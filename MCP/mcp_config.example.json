@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "semaforo-iot": {
+      "command": "dotnet",
+      "args": [
+        "run",
+        "--project",
+        "REEMPLAZA_ESTO_POR_TU_RUTA/IoTChat/MCP"
+      ],
+      "env": {}
+    }
+  }
+}

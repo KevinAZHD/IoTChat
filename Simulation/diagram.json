@@ -1,0 +1,139 @@
+{
+  "version": 1,
+  "author": "KevinAZ",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 268.8, "left": 206.44, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "ledR",
+      "top": 267.6,
+      "left": 371.4,
+      "rotate": 90,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "ledY",
+      "top": 354,
+      "left": 371.4,
+      "rotate": 90,
+      "attrs": { "color": "yellow" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "ledG",
+      "top": 440.4,
+      "left": 371.4,
+      "rotate": 90,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 215.15,
+      "left": 230.4,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 321.6,
+      "left": 325.85,
+      "rotate": 90,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 436.8,
+      "left": 306.65,
+      "rotate": 90,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd",
+      "top": 496,
+      "left": 101.6,
+      "attrs": { "pins": "i2c" }
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr",
+      "top": 147,
+      "left": 190,
+      "rotate": 180,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": 213.6,
+      "left": 107.4,
+      "attrs": { "volume": "0.1" }
+    },
+    {
+      "type": "wokwi-pir-motion-sensor",
+      "id": "pir1",
+      "top": 337.72,
+      "left": 96.5,
+      "rotate": 90,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-pushbutton-6mm",
+      "id": "btnR",
+      "top": 254.6,
+      "left": 336.8,
+      "rotate": 180,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-pushbutton-6mm",
+      "id": "btnY",
+      "top": 312.2,
+      "left": 317.6,
+      "rotate": 180,
+      "attrs": { "color": "yellow" }
+    },
+    {
+      "type": "wokwi-pushbutton-6mm",
+      "id": "btnG",
+      "top": 398.6,
+      "left": 346.4,
+      "rotate": 180,
+      "attrs": { "color": "green" }
+    }
+  ],
+  "connections": [
+    [ "esp:25", "r1:1", "red", [ "h-20", "v-150", "h375" ] ],
+    [ "r1:2", "ledR:A", "red", [ "h30" ] ],
+    [ "ledR:C", "esp:GND", "black", [ "v70", "h-375" ] ],
+    [ "esp:26", "r2:1", "orange", [ "h-20", "v-90", "h375" ] ],
+    [ "r2:2", "ledY:A", "orange", [ "h30" ] ],
+    [ "ledY:C", "esp:GND", "black", [ "v60", "h-375" ] ],
+    [ "esp:27", "r3:1", "green", [ "h-20", "v-30", "h375" ] ],
+    [ "r3:2", "ledG:A", "green", [ "h30" ] ],
+    [ "ledG:C", "esp:GND", "black", [ "v50", "h-375" ] ],
+    [ "lcd:GND", "esp:GND.1", "black", [ "v-80", "h50" ] ],
+    [ "lcd:VCC", "esp:3V3.1", "red", [ "v-100", "h50" ] ],
+    [ "lcd:SDA", "esp:21", "blue", [ "v-230", "h-20" ] ],
+    [ "lcd:SCL", "esp:22", "yellow", [ "v-250", "h-20" ] ],
+    [ "ldr:VCC", "esp:3V3", "red", [] ],
+    [ "ldr:GND", "esp:GND", "black", [] ],
+    [ "ldr:AO", "esp:34", "green", [] ],
+    [ "bz1:1", "esp:4", "purple", [] ],
+    [ "bz1:2", "esp:GND.3", "black", [] ],
+    [ "pir1:VCC", "esp:3V3", "red", [] ],
+    [ "pir1:GND", "esp:GND", "black", [] ],
+    [ "pir1:OUT", "esp:5", "purple", [] ],
+    [ "btnR:1.l", "esp:GND", "black", [] ],
+    [ "btnR:2.r", "esp:12", "red", [] ],
+    [ "btnY:1.l", "esp:GND", "black", [] ],
+    [ "btnY:2.r", "esp:13", "yellow", [] ],
+    [ "btnG:1.l", "esp:GND", "black", [] ],
+    [ "btnG:2.r", "esp:14", "green", [] ]
+  ],
+  "dependencies": {}
+}

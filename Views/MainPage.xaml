@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:conv="clr-namespace:IoTChat.Converters"
+             x:Class="IoTChat.Views.MainPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}">
+    <ContentPage.Resources>
+        <conv:BoolToColorConverter x:Key="BoolToColor" />
+        <conv:BoolToOpacityConverter x:Key="BoolToOpacity" />
+        <conv:BoolToAlignmentConverter x:Key="BoolToAlign" />
+    </ContentPage.Resources>
+    <Grid RowDefinitions="Auto,*,Auto" Padding="0">
+        <Border Grid.Row="0" BackgroundColor="{AppThemeBinding Light={StaticResource HeaderBackgroundLight}, Dark={StaticResource HeaderBackgroundDark}}" StrokeThickness="0" Padding="16,0" HeightRequest="56">
+            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10" VerticalOptions="Center">
+                
+                <Grid Grid.Column="0" WidthRequest="32" HeightRequest="32" VerticalOptions="Center" BackgroundColor="Transparent">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ClearChatCommand}" />
+                    </Grid.GestureRecognizers>
+                    <Path Data="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" Fill="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray400}}" Aspect="Uniform" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="20" HeightRequest="20"/>
+                </Grid>
+                
+                <HorizontalStackLayout Grid.Column="1" Spacing="12" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Path Data="M12,2A2,2 0 0,1 14,4C14,4.74 13.6,5.39 13,5.73V7H14A3,3 0 0,1 17,10V11H18A2,2 0 0,1 20,13V15A2,2 0 0,1 18,17H17V18A3,3 0 0,1 14,21H10A3,3 0 0,1 7,18V17H6A2,2 0 0,1 4,15V13A2,2 0 0,1 6,11H7V10A3,3 0 0,1 10,7H11V5.73C10.4,5.39 10,4.74 10,4A2,2 0 0,1 12,2M10,10A3,3 0 0,0 7,13V18A1,1 0 0,0 8,19H16A1,1 0 0,0 17,18V13A3,3 0 0,0 14,10H10M9,13H11V15H9V13M13,13H15V15H13V13Z" 
+                          Fill="{AppThemeBinding Light={StaticResource BlackBrush}, Dark={StaticResource WhiteBrush}}" WidthRequest="44" HeightRequest="44" VerticalOptions="Center" Aspect="Uniform"/>
+                    <Label Text="ELIoT" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" FontSize="24" FontAttributes="Bold" VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+                
+                <HorizontalStackLayout Grid.Column="2" Spacing="10" VerticalOptions="Center">
+                    <Grid WidthRequest="32" HeightRequest="32" BackgroundColor="Transparent">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ToggleThemeCommand}" />
+                        </Grid.GestureRecognizers>
+                        <Path Data="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z" 
+                              Fill="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray400}}" Aspect="Uniform" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="20" HeightRequest="20" IsVisible="{Binding IsDarkTheme}"/>
+                        <Path Data="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z" 
+                              Fill="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray400}}" Aspect="Uniform" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="20" HeightRequest="20" IsVisible="{Binding IsLightTheme}"/>
+                    </Grid>
+                </HorizontalStackLayout>
+            </Grid>
+        </Border>
+        <Grid x:Name="MainGrid" Grid.Row="1" Margin="12,8,12,4" ColumnDefinitions="*, 54, 120">
+            <Grid Grid.Column="0" x:Name="EmptyChatContainer" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="False">
+                <Grid.Triggers>
+                    <DataTrigger TargetType="Grid" Binding="{Binding Messages.Count}" Value="0">
+                        <Setter Property="IsVisible" Value="True"/>
+                    </DataTrigger>
+                </Grid.Triggers>
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="8" Padding="40">
+                    <Path Data="M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4C22,2.89 21.1,2 20,2M9,11H7V9H9V11M13,11H11V9H13V11M17,11H15V9H17V11Z" 
+                          Fill="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Gray600}}" 
+                          WidthRequest="48" HeightRequest="48" HorizontalOptions="Center" Aspect="Uniform"/>
+                    <Label Text="Esperando indicaciones" FontSize="16" TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray400}}" HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </Grid>
+            <CollectionView Grid.Column="0" ItemsSource="{Binding Messages}" x:Name="MensajesCollection" ItemsUpdatingScrollMode="KeepLastItemInView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Padding="2,4" FlowDirection="LeftToRight">
+                            <Border HorizontalOptions="End" IsVisible="{Binding IsUser}" BackgroundColor="{AppThemeBinding Light={StaticResource UserBubbleLight}, Dark={StaticResource UserBubbleDark}}" StrokeShape="RoundRectangle 18,4,18,18" StrokeThickness="0" MaximumWidthRequest="{OnPlatform Default=400, Android=240, iOS=240}" Padding="14,10" Margin="40,0,0,0">
+                                <Label Text="{Binding Text}" FontSize="14" TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}" LineBreakMode="WordWrap"/>
+                            </Border>
+                            <Border HorizontalOptions="Start" IsVisible="False" BackgroundColor="{AppThemeBinding Light={StaticResource AssistantBubbleLight}, Dark={StaticResource AssistantBubbleDark}}" Stroke="{AppThemeBinding Light={StaticResource BorderColorLight}, Dark={StaticResource BorderColorDark}}" StrokeShape="RoundRectangle 4,18,18,18" StrokeThickness="1" MaximumWidthRequest="{OnPlatform Default=400, Android=240, iOS=240}" Padding="14,10" Margin="0,0,40,0">
+                                <Border.Triggers>
+                                    <DataTrigger TargetType="Border" Binding="{Binding IsUser}" Value="False">
+                                        <Setter Property="IsVisible" Value="True" />
+                                    </DataTrigger>
+                                </Border.Triggers>
+                                <VerticalStackLayout Spacing="6">
+                                    <Label Text="ELIoT" FontSize="11" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                                    <Label Text="{Binding Text}" FontSize="14" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" LineBreakMode="WordWrap"/>
+                                </VerticalStackLayout>
+                            </Border>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Línea Separadora con Botón -->
+            <Grid Grid.Column="1" WidthRequest="34" Margin="10,0" VerticalOptions="Fill">
+                <BoxView WidthRequest="1" Color="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource BorderColorDark}}" HorizontalOptions="Center" VerticalOptions="Fill"/>
+                <Border WidthRequest="34" HeightRequest="34" BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" Stroke="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource BorderColorDark}}" StrokeThickness="1" StrokeShape="RoundRectangle 17" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Border.GestureRecognizers><TapGestureRecognizer Command="{Binding ToggleLayoutCommand}"/></Border.GestureRecognizers>
+                    <Path Data="M6.99 11L3 15l3.99 4v-3H14v-2H6.99v-3zM21 9l-3.99-4v3H10v2h7.01v3L21 9z" Fill="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray400}}" Aspect="Uniform" WidthRequest="18" HeightRequest="18" HorizontalOptions="Center" VerticalOptions="Center"/>
+                </Border>
+            </Grid>
+
+            <!-- Semáforo con ancho fijo -->
+            <Grid Grid.Column="2" x:Name="SemaforoContainer" WidthRequest="120" HorizontalOptions="Center" VerticalOptions="Fill">
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
+                    <Border WidthRequest="100" HeightRequest="100" StrokeShape="RoundRectangle 50" Stroke="{AppThemeBinding Light={StaticResource BorderColorLight}, Dark={StaticResource BorderColorDark}}" StrokeThickness="2" BackgroundColor="{Binding RedOn, Converter={StaticResource BoolToColor}, ConverterParameter=Red}" Opacity="{Binding RedOn, Converter={StaticResource BoolToOpacity}}" HorizontalOptions="Center">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ToggleLightCommand}" CommandParameter="red" />
+                        </Border.GestureRecognizers>
+                        <Border.Shadow><Shadow Brush="#FF1744" Radius="20" Opacity="0.5" /></Border.Shadow>
+                    </Border>
+                    <Border WidthRequest="100" HeightRequest="100" StrokeShape="RoundRectangle 50" Stroke="{AppThemeBinding Light={StaticResource BorderColorLight}, Dark={StaticResource BorderColorDark}}" StrokeThickness="2" BackgroundColor="{Binding YellowOn, Converter={StaticResource BoolToColor}, ConverterParameter=Yellow}" Opacity="{Binding YellowOn, Converter={StaticResource BoolToOpacity}}" HorizontalOptions="Center">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ToggleLightCommand}" CommandParameter="yellow" />
+                        </Border.GestureRecognizers>
+                        <Border.Shadow><Shadow Brush="#FFD600" Radius="20" Opacity="0.5" /></Border.Shadow>
+                    </Border>
+                    <Border WidthRequest="100" HeightRequest="100" StrokeShape="RoundRectangle 50" Stroke="{AppThemeBinding Light={StaticResource BorderColorLight}, Dark={StaticResource BorderColorDark}}" StrokeThickness="2" BackgroundColor="{Binding GreenOn, Converter={StaticResource BoolToColor}, ConverterParameter=Green}" Opacity="{Binding GreenOn, Converter={StaticResource BoolToOpacity}}" HorizontalOptions="Center">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ToggleLightCommand}" CommandParameter="green" />
+                        </Border.GestureRecognizers>
+                        <Border.Shadow><Shadow Brush="#00E676" Radius="20" Opacity="0.5" /></Border.Shadow>
+                    </Border>
+                </VerticalStackLayout>
+
+            </Grid>
+        </Grid>
+        <Border Grid.Row="2" BackgroundColor="{AppThemeBinding Light={StaticResource HeaderBackgroundLight}, Dark={StaticResource HeaderBackgroundDark}}" StrokeThickness="0" Padding="12,10,12,14">
+            <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="10">
+                <Border Grid.Column="0" BackgroundColor="{AppThemeBinding Light={StaticResource InputBackgroundLight}, Dark={StaticResource InputBackgroundDark}}" StrokeShape="RoundRectangle 22" StrokeThickness="0" Padding="12,0">
+                    <Entry Text="{Binding UserMessage}" Placeholder="Indícale algo a ELIoT..." PlaceholderColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" FontSize="15" ReturnCommand="{Binding SendCommand}" IsEnabled="{Binding IsNotBusy}" BackgroundColor="Transparent"/>
+                </Border>
+                <Border Grid.Column="1" WidthRequest="44" HeightRequest="44" BackgroundColor="{Binding MicButtonColor}" StrokeThickness="0" StrokeShape="RoundRectangle 22">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ToggleListenCommand}" />
+                    </Border.GestureRecognizers>
+                    <Path Data="M12,2A3,3 0 0,1 15,5V11A3,3 0 0,1 12,14A3,3 0 0,1 9,11V5A3,3 0 0,1 12,2M19,11C19,14.53 16.39,17.44 13,17.93V21H11V17.93C7.61,17.44 5,14.53 5,11H7A5,5 0 0,0 12,16A5,5 0 0,0 17,11H19Z" Aspect="Uniform" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="22" HeightRequest="22">
+                        <Path.Triggers>
+                            <DataTrigger TargetType="Path" Binding="{Binding IsListening}" Value="False">
+                                <Setter Property="Fill" Value="{AppThemeBinding Light={StaticResource PrimaryColor}, Dark={StaticResource PrimaryColor}}" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Path" Binding="{Binding IsListening}" Value="True">
+                                <Setter Property="Fill" Value="White" />
+                            </DataTrigger>
+                        </Path.Triggers>
+                    </Path>
+                </Border>
+                <Border Grid.Column="2" WidthRequest="44" HeightRequest="44" BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryColor}, Dark={StaticResource PrimaryColor}}" StrokeThickness="0" StrokeShape="RoundRectangle 22">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SendCommand}" />
+                    </Border.GestureRecognizers>
+                    <Path Data="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" Fill="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}" Aspect="Uniform" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="20" HeightRequest="20" Margin="4,0,0,0"/>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</ContentPage>
+

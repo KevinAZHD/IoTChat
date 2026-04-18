@@ -1,0 +1,122 @@
+[
+    {
+        "id": "flow_semaforo",
+        "type": "tab",
+        "label": "IoTChat Semáforo",
+        "disabled": false,
+        "info": "Flujo para controlar semáforo IoT desde MAUI app"
+    },
+    {
+        "id": "http_in_encender",
+        "type": "http in",
+        "z": "flow_semaforo",
+        "name": "POST /encender",
+        "url": "/encender",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 200,
+        "wires": [
+            [
+                "func_procesar"
+            ]
+        ]
+    },
+    {
+        "id": "func_procesar",
+        "type": "function",
+        "z": "flow_semaforo",
+        "name": "Procesar comando",
+        "func": "// Extraer el comando del body\nvar command = msg.payload.command || \"\";\n\n// Preparar mensaje para MQTT\nmsg.payload = command;\n\n// Log\nnode.warn(\"Comando recibido: \" + command);\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 200,
+        "wires": [
+            [
+                "mqtt_out",
+                "debug_node",
+                "http_response"
+            ]
+        ]
+    },
+    {
+        "id": "mqtt_out",
+        "type": "mqtt out",
+        "z": "flow_semaforo",
+        "name": "MQTT → ESP32",
+        "topic": "iabd2425/esp32/led",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "mqtt_broker",
+        "x": 610,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "http_response",
+        "type": "http response",
+        "z": "flow_semaforo",
+        "name": "Respuesta HTTP",
+        "statusCode": "200",
+        "headers": {},
+        "x": 620,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "debug_node",
+        "type": "debug",
+        "z": "flow_semaforo",
+        "name": "Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "mqtt_broker",
+        "type": "mqtt-broker",
+        "name": "test.mosquitto.org",
+        "broker": "test.mosquitto.org",
+        "port": "1883",
+        "clientid": "NodeRed_IoTChat",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
