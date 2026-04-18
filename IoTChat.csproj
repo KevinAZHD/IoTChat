@@ -24,7 +24,7 @@
 
 
 		<ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
-		<ApplicationVersion>1.0.0</ApplicationVersion>
+		<ApplicationVersion>1</ApplicationVersion>
 
 
 		<WindowsPackageType>None</WindowsPackageType>
